@@ -26,3 +26,4 @@ Open http://localhost:5173/ in your browser.
 ## Deploy (GitHub Pages)
 - On push to `main`, GitHub Actions builds and deploys to Pages.
 - URL: `https://hyukiody.github.io/frontproject-development-serviceApi/`
+- **Setup Required:** See [GITHUB_PAGES_SETUP.md](./GITHUB_PAGES_SETUP.md) for instructions to enable GitHub Pages

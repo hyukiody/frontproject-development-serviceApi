@@ -1,22 +1,22 @@
+import { Routes, Route, Link } from 'react-router-dom'
+import Portfolio from './pages/Portfolio'
+
 export default function App() {
   return (
-    <main id="main" className="app" role="main">
-      <section className="card" aria-labelledby="title">
-        <h1 id="title">Orange is on 🍊</h1>
-        <p>
-          This starter is themed in orange. Edit <code>src/App.tsx</code> and save
-          to see changes.
-        </p>
-        <a
-          className="button"
-          href="https://vitejs.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open the Vite website in a new tab"
-        >
-          Learn Vite
-        </a>
-      </section>
-    </main>
+    <div>
+      <nav aria-label="Primary">
+        <a className="skip-link" href="#main">Skip to main content</a>
+        <div className="app" style={{ padding: 0 }}>
+          <div className="card" style={{ display: 'flex', gap: '0.5rem' }}>
+            <Link className="button" to="/">Home</Link>
+            <a className="button" href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">Vite Docs</a>
+          </div>
+        </div>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+      </Routes>
+    </div>
   )
 }

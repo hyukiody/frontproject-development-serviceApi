@@ -1,30 +1,30 @@
+import { useTranslation } from 'react-i18next'
+
 export default function Portfolio() {
+  const { t } = useTranslation()
   return (
     <main id="main" className="app" role="main" aria-labelledby="portfolio-title">
       <section className="card">
-        <h1 id="portfolio-title">Portfolio</h1>
-        <p>Orange-themed, accessible portfolio landing page.</p>
+        <h1 id="portfolio-title">{t('portfolio.title')}</h1>
+        <p>{t('portfolio.intro')}</p>
 
         <section aria-labelledby="about-title">
-          <h2 id="about-title">About</h2>
-          <p>
-            Hi, I build modern frontend apps. This site is powered by React + Vite
-            and deployed via GitHub Pages.
-          </p>
+          <h2 id="about-title">{t('portfolio.aboutTitle')}</h2>
+          <p>{t('portfolio.aboutBody')}</p>
         </section>
 
         <section aria-labelledby="projects-title">
-          <h2 id="projects-title">Projects</h2>
+          <h2 id="projects-title">{t('portfolio.projectsTitle')}</h2>
           <ul>
-            <li><strong>Orange App:</strong> Vite + React starter with a11y.</li>
-            <li><strong>Service API:</strong> Frontend integration and docs.</li>
+            <li>{t('portfolio.proj1')}</li>
+            <li>{t('portfolio.proj2')}</li>
           </ul>
         </section>
 
         <section aria-labelledby="contact-title">
-          <h2 id="contact-title">Contact</h2>
+          <h2 id="contact-title">{t('portfolio.contactTitle')}</h2>
           <p>
-            Reach me on <a className="button" href="https://github.com/hyukiody" target="_blank" rel="noopener noreferrer">GitHub</a>.
+            {t('portfolio.contactBody')} <a className="button" href="https://github.com/hyukiody" target="_blank" rel="noopener noreferrer">{t('portfolio.github')}</a>.
           </p>
         </section>
       </section>

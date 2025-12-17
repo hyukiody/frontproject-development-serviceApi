@@ -64,11 +64,14 @@ You can also trigger deployment manually:
 
 ### 404 Error on Deployed Site
 
-**Solution:** Verify the `base` configuration in `vite.config.ts` matches your repository name
+**Solution:** Verify the `base` configuration in `vite.config.ts` matches your repository name:
+```typescript
+base: '/frontproject-development-serviceApi/'
+```
 
 ### Assets Not Loading
 
-**Solution:** The `.nojekyll` file prevents Jekyll from ignoring files starting with `_`. This is already included.
+**Solution:** The `.nojekyll` file prevents Jekyll from processing the site and ignoring files starting with `_`. This is already included.
 
 ### Workflow Permissions Error
 

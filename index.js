@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 // Load deployment methods data
 const dataPath = path.join(__dirname, 'data', 'deployment-methods.json');
-let deploymentData = {};
 
+let deploymentData;
 try {
   const rawData = fs.readFileSync(dataPath, 'utf8');
   deploymentData = JSON.parse(rawData);

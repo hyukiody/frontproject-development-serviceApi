@@ -3,6 +3,7 @@ node_modules/
 
 # Build outputs
 dist/
+tsconfig.tsbuildinfo
 
 # Logs
 npm-debug.log*

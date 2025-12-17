@@ -12,7 +12,10 @@
     "coverage": "vitest run --coverage",
     "test:ci": "vitest run --coverage",
     "open": "start http://localhost:5173/",
-    "preview:open": "vite preview --open"
+    "preview:open": "vite preview --open",
+    "open:live": "start https://hyukiody.github.io/frontproject-development-serviceApi/",
+    "status:deploy": "start https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/deploy.yml",
+    "status:ci": "start https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/ci.yml"
   },
   "dependencies": {
     "i18next": "^25.7.3",

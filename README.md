@@ -1,5 +1,8 @@
 # frontproject-development-serviceApi
 
+[![Deploy](https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/deploy.yml/badge.svg)](https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/deploy.yml)
+[![CI Tests](https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/ci.yml/badge.svg)](https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/ci.yml)
+
 Orange-themed React + Vite + TypeScript frontend.
 
 ## Scripts
@@ -31,6 +34,11 @@ Open http://localhost:5173/ in your browser.
 ## Deploy (GitHub Pages)
 - On push to `main`, GitHub Actions builds and deploys to Pages.
 - URL: `https://hyukiody.github.io/frontproject-development-serviceApi/`
+
+## Status & Shortcuts
+- Actions (Deploy): https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/deploy.yml
+- Actions (CI): https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/ci.yml
+- Live: https://hyukiody.github.io/frontproject-development-serviceApi/
  
 ## Translations (i18n)
 - Uses `i18next` + `react-i18next` with `en` and `ja`.

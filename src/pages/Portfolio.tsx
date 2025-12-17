@@ -1,7 +1,17 @@
 import { useTranslation } from 'react-i18next'
+import SelfHostedReadme from '../components/SelfHostedReadme'
+import type { GitConfig } from '../lib/gitClient'
 
 export default function Portfolio() {
   const { t } = useTranslation()
+  const sampleConfig: GitConfig = {
+    baseUrl: 'https://git.your-domain.com',
+    apiPath: '/api/v1/repos',
+    owner: 'username',
+    repo: 'project-name',
+    file: 'README.md',
+    branch: 'main',
+  }
   return (
     <main id="main" className="app" role="main" aria-labelledby="portfolio-title">
       <section className="card">
@@ -26,6 +36,10 @@ export default function Portfolio() {
           <p>
             {t('portfolio.contactBody')} <a className="button" href="https://github.com/hyukiody" target="_blank" rel="noopener noreferrer">{t('portfolio.github')}</a>.
           </p>
+        </section>
+
+        <section aria-labelledby="git-title" style={{ marginTop: '1rem' }}>
+          <SelfHostedReadme config={sampleConfig} />
         </section>
       </section>
     </main>

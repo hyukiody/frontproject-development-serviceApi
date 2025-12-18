@@ -134,6 +134,12 @@ frontproject-development-serviceApi/
 
 This project is open source and available under the [MIT License](LICENSE).
 # frontproject-development-serviceApi
+frontproject, development deployment
+
+## Deployment Methods Overview
+
+| Method | Complexity | Cost | Best For |
+|--------|------------|------|----------|
 
 API service for frontend project development deployment methods comparison.
 

@@ -1,6 +1,10 @@
 {
   "name": "jsproject",
   "version": "0.0.1",
+  "name": "frontproject-development-serviceapi",
+  "version": "1.0.0",
+  "description": "API service for frontend project deployment methods comparison",
+  "main": "index.js",
   "private": true,
   "type": "module",
   "description": "API service for frontend project deployment methods comparison",

@@ -33,11 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
  * Fetches the README from the self-hosted Git API
  * @param {HTMLElement} container - The DOM element to render results
  */
-async function fetchGitReadme(container) {
+async function fetchGitReadme(container: HTMLElement | null) {
+    if (!container) return;
     container.innerHTML = '<p>Loading from Self-Hosted Git...</p>';
 
     try {
-        const headers = {};
+        const headers: Record<string, string> = {};
         if (GIT_CONFIG.token) {
             headers['Authorization'] = `token ${GIT_CONFIG.token}`;
         }
@@ -56,7 +57,8 @@ async function fetchGitReadme(container) {
 
     } catch (error) {
         console.error('Fetch failed:', error);
-        container.innerHTML = `<div class="error">Failed to load: ${error.message}</div>`;
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        container.innerHTML = `<div class="error">Failed to load: ${errorMessage}</div>`;
     }
 }
 
@@ -65,7 +67,7 @@ async function fetchGitReadme(container) {
  * Note: For real Markdown parsing, use a library like 'marked'.
  * This simple version preserves whitespace using CSS style.
  */
-function renderMarkdown(container, text) {
+function renderMarkdown(container: HTMLElement, text: string) {
     // Clear loading state
     container.innerHTML = '';
     

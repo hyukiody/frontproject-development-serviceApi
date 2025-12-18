@@ -7,6 +7,8 @@
   "main": "index.js",
   "private": true,
   "type": "module",
+  "description": "API service for frontend project deployment methods comparison",
+  "main": "index.js",
   "description": "Orange-themed React + Vite + TypeScript frontend with mobile-optimized design",
   "scripts": {
     "start": "node index.js",

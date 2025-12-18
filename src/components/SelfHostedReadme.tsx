@@ -37,7 +37,16 @@ export default function SelfHostedReadme({ config, autoLoad = false, fetchFn }: 
       <h2 id="self-hosted-readme-title">Self-Hosted Git README</h2>
       <p>Click to fetch README from your self-hosted Git instance.</p>
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-        <button className="button" onClick={load} disabled={status === 'loading'}>
+        <button 
+          className="button" 
+          onClick={load} 
+          disabled={status === 'loading'}
+          style={{ 
+            cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+            opacity: status === 'loading' ? 0.6 : 1,
+            transition: 'opacity 0.2s ease'
+          }}
+        >
           {status === 'loading' ? 'Loading…' : 'Load README'}
         </button>
       </div>

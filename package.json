@@ -3,22 +3,10 @@
   "version": "1.0.0",
   "description": "API service for frontend project deployment methods comparison",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"No tests specified\" && exit 0"
-  },
-  "keywords": [
-    "deployment",
-    "frontend",
-    "api"
-  ],
-  "author": "",
-  "license": "MIT"
-  "name": "jsproject",
-  "version": "0.0.1",
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "node index.js",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
@@ -32,6 +20,13 @@
     "status:deploy": "start https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/deploy.yml",
     "status:ci": "start https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/ci.yml"
   },
+  "keywords": [
+    "deployment",
+    "frontend",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
     "i18next": "^25.7.3",
     "react": "^18.2.0",

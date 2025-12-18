@@ -61,6 +61,7 @@ This application includes several mobile-specific enhancements:
 ## Deploy (GitHub Pages)
 - On push to `main`, GitHub Actions builds and deploys to Pages.
 - URL: `https://hyukiody.github.io/frontproject-development-serviceApi/`
+- **Setup Required:** See [GITHUB_PAGES_SETUP.md](./GITHUB_PAGES_SETUP.md) for instructions to enable GitHub Pages
 - Pages must be enabled in repository Settings → Pages with source set to "GitHub Actions"
 
 ## Status & Shortcuts

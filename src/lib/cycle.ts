@@ -67,10 +67,10 @@ export function endCycleWithError(state: CycleState, error: string): CycleState 
 
 /**
  * Resets the cycle state back to idle.
- * @param state - The current cycle state
+ * @param _state - The current cycle state (unused, kept for API consistency)
  * @returns A new idle cycle state
  */
-export function resetCycle(state: CycleState): CycleState {
+export function resetCycle(_state: CycleState): CycleState {
   return createCycleState()
 }
 

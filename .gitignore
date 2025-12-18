@@ -42,3 +42,21 @@ Thumbs.db
 .cache/
 .temp/
 .tmp/
+
+# Build outputs
+dist/
+tsconfig.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db

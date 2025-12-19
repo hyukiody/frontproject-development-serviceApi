@@ -1,7 +1,3 @@
-Here is a remodeled, cohesive documentation structure. I have consolidated the fragmented text into a professional **Project README** format that balances the **educational guide** (theory) with the **project implementation details** (practice).
-
----
-
 # Frontend Project Development & Service API
 
 A comprehensive repository demonstrating a full-stack implementation of modern frontend practices. This project includes a **React + Vite + TypeScript** frontend and a **Node.js** backend service, designed to illustrate the lifecycle from local development to production deployment.

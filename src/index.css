@@ -2,6 +2,7 @@
   --orange: #ff7a00;
   --orange-600: #ff6a00;
   --orange-700: #e05900;
+  --cyan: #00FFFF;
   --bg: #0f0f10;
   --text: #ffffff;
   --muted: #cfcfd2;
@@ -16,6 +17,7 @@ body {
   background: radial-gradient(1200px 800px at 80% -10%, rgba(255,122,0,0.15), transparent 70%),
               radial-gradient(1000px 600px at -10% 110%, rgba(255,122,0,0.12), transparent 60%),
               var(--bg);
+  min-height: 100vh;
 }
 
 .skip-link {
@@ -27,6 +29,7 @@ body {
   padding: 8px 12px;
   border-radius: 6px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 100;
 }
 .skip-link:focus {
   top: 8px;
@@ -34,10 +37,10 @@ body {
 }
 
 .app {
-  min-height: 100%;
+  min-height: auto;
   display: grid;
   place-items: center;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 @media (max-width: 768px) {
@@ -46,32 +49,48 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  .app {
+    padding: 0.75rem;
+  }
+}
+
 .card {
-  width: min(720px, 100%);
-  background: rgba(17, 17, 18, 0.7);
-  border: 1px solid rgba(255, 122, 0, 0.25);
+  width: min(900px, 100%);
+  background: rgba(17, 17, 18, 0.8);
+  border: 1px solid rgba(255, 122, 0, 0.3);
   border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 20px 50px rgba(255, 122, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(6px);
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(255, 122, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: min(800px, 100%);
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .card {
-    padding: 1.5rem;
+    width: min(700px, 100%);
+    padding: 1.75rem;
     border-radius: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .card {
+    width: 100%;
     padding: 1.25rem;
+    border-radius: 10px;
   }
 }
 
 h1 {
-  margin: 0 0 0.5rem 0;
-  font-size: 2.25rem;
+  margin: 0 0 0.75rem 0;
+  font-size: 2.5rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
   background: linear-gradient(90deg, var(--orange), var(--orange-700));
@@ -80,9 +99,15 @@ h1 {
   color: transparent;
 }
 
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+}
+
 @media (max-width: 768px) {
   h1 {
-    font-size: 1.875rem;
+    font-size: 2rem;
   }
 }
 
@@ -92,20 +117,85 @@ h1 {
   }
 }
 
-p { color: var(--muted); margin: 0 0 1.25rem 0; }
+h2 {
+  font-size: 1.75rem;
+  margin: 1.5rem 0 0.75rem 0;
+  color: var(--text);
+}
 
 @media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+    margin: 1.25rem 0 0.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+p { 
+  color: var(--muted); 
+  margin: 0 0 1.25rem 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
   p {
     font-size: 0.9375rem;
   }
 }
 
+ul, ol {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  ul, ol {
+    padding-left: 1.25rem;
+  }
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  section {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    margin-bottom: 1.25rem;
+  }
+}
+
 .button {
-  padding: 0.65rem 1rem;
+  padding: 0.75rem 1.25rem;
   color: #111;
   background: linear-gradient(180deg, var(--orange), var(--orange-600));
   border-radius: 10px;
   font-weight: 600;
+  font-size: 0.9375rem;
   text-decoration: none;
   border: 1px solid rgba(0,0,0,0.15);
   box-shadow: 0 10px 20px rgba(255, 122, 0, 0.25);
@@ -115,6 +205,14 @@ p { color: var(--muted); margin: 0 0 1.25rem 0; }
   align-items: center;
   justify-content: center;
   touch-action: manipulation;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -124,11 +222,15 @@ p { color: var(--muted); margin: 0 0 1.25rem 0; }
   }
 }
 
-.button:hover { filter: brightness(1.03); }
+.button:hover { 
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
 
 @media (hover: none) and (pointer: coarse) {
   .button:hover {
     filter: none;
+    transform: none;
   }
   
   .button:active {
@@ -143,4 +245,10 @@ p { color: var(--muted); margin: 0 0 1.25rem 0; }
   box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.6);
 }
 
-code { color: var(--orange); }
+code { 
+  color: var(--orange);
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background: rgba(255, 122, 0, 0.1);
+  border-radius: 4px;
+}

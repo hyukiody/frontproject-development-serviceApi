@@ -1,78 +1,110 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import Portfolio from './pages/Portfolio'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import './App.css';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import catLogo from './assets/cat-logo.png';
 
-export default function App() {
-  const { t, i18n } = useTranslation()
+function AppContent() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
-    <div>
-      <nav aria-label="Primary">
-        <a className="skip-link" href="#main">Skip to main content</a>
-        <div className="app" style={{ padding: 0 }}>
-          <div className="card" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <Link 
-              className="button home-button" 
-              to="/" 
+    <div className="App">
+      <header className="App-header">
+        <nav className="nav-container">
+          <Link 
+            to="/" 
+            className="logo-link"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
+              padding: '8px',
+              borderRadius: '50px',
+              boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)',
+              transition: 'all 0.3s ease',
+              textDecoration: 'none',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.6)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
+            }}
+          >
+            <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                background: 'linear-gradient(135deg, #ff7a00 0%, #ff9500 100%)',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '12px',
-                border: '2px solid rgba(255, 255, 255, 0.2)',
-                boxShadow: '0 8px 16px rgba(255, 122, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-                transition: 'all 0.3s ease',
-                fontWeight: '600',
-                position: 'relative',
-                overflow: 'visible'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)'
-                e.currentTarget.style.boxShadow = '0 12px 24px rgba(255, 122, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(1)'
-                e.currentTarget.style.boxShadow = '0 8px 16px rgba(255, 122, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
-              }}
-            >
-              <div style={{
                 background: 'white',
                 borderRadius: '50%',
-                padding: '6px',
+                padding: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                border: '2px solid rgba(255, 122, 0, 0.3)'
-              }}>
-                <img 
-                  src="/frontproject-development-serviceApi/cat-logo.svg" 
-                  alt="Cat logo" 
-                  style={{ 
-                    width: '40px', 
-                    height: '40px',
-                    display: 'block'
-                  }} 
-                />
-              </div>
-              <span style={{ 
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-                fontSize: '1.1rem'
-              }}>
-                {t('nav.home')}
-              </span>
+                border: '3px solid #333',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.1)',
+              }}
+            >
+              <img 
+                src={catLogo} 
+                alt="Cat Logo" 
+                style={{
+                  height: '32px',
+                  width: '32px',
+                  display: 'block',
+                }}
+              />
+            </div>
+            <span 
+              style={{
+                marginLeft: '12px',
+                marginRight: '8px',
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: '18px',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              Home
+            </span>
+          </Link>
+          
+          <div className="nav-links">
+            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+              About
             </Link>
-            <a className="button" href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">{t('nav.docs')}</a>
-            <button className="button" onClick={() => i18n.changeLanguage('en')} aria-label="Switch to English">{t('nav.en')}</button>
-            <button className="button" onClick={() => i18n.changeLanguage('ja')} aria-label="日本語に切り替え">{t('nav.ja')}</button>
+            <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
+              Contact
+            </Link>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      <Routes>
-        <Route path="/" element={<Portfolio />} />
-      </Routes>
+      <main className="App-main">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+
+      <footer className="App-footer">
+        <p>&copy; 2024 My React App. All rights reserved.</p>
+      </footer>
     </div>
-  )
+  );
 }
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+export default App;

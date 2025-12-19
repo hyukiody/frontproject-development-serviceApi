@@ -4,6 +4,19 @@ A comprehensive repository demonstrating a full-stack implementation of modern f
 
 > **🌐 Live Demo:** [hyukiody.github.io/frontproject-development-serviceApi](https://hyukiody.github.io/frontproject-development-serviceApi/)
 
+[![CI/CD Pipeline](https://github.com/hyukiody/frontproject-development-serviceApi/actions/workflows/deploy.yml/badge.svg)](https://github.com/hyukiody/frontproject-development-serviceApi/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
+
+---
+
+## 📋 Prerequisites
+
+Before getting started, ensure you have the following installed:
+
+- **Node.js:** v18.x or higher
+- **npm/yarn/pnpm:** Latest stable version
+- **Git:** For version control
+
 ---
 
 ## 📚 Part 1: Educational Guide & Architecture
@@ -26,7 +39,7 @@ Focuses on environment consistency and code quality.
 Since browsers cannot efficiently execute raw JSX/TypeScript, the code must be compiled.
 
 * **Command:** `npm run build`
-* **Process:** Transpilation (Babel/SWC)  Tree-Shaking  Minification  Version Hashing (`index.a1b2c.js`).
+* **Process:** Transpilation (Babel/SWC) → Tree-Shaking → Minification → Version Hashing (`index.a1b2c.js`).
 * **Output:** A `dist/` folder containing static assets ready for distribution.
 
 #### Phase 3: Deployment Strategies
@@ -43,8 +56,8 @@ The deployment method depends on the rendering strategy.
 Manual deployments are error-prone. This project uses **GitHub Actions** to automate the bridge between code and server.
 
 1. **Trigger:** Push to `main`.
-2. **CI:** Install dependencies  Run Unit Tests.
-3. **CD:** Build Artifacts  Deploy to Target (GitHub Pages/S3).
+2. **CI:** Install dependencies → Run Unit Tests.
+3. **CD:** Build Artifacts → Deploy to Target (GitHub Pages/S3).
 
 ---
 
@@ -67,16 +80,21 @@ An Orange-themed React application optimized for mobile and desktop.
 
 ```bash
 npm install           # Install dependencies
-npm run dev           # Start local dev server
-npm run build         # compile for production
+npm run dev           # Start local dev server (http://localhost:5173)
+npm run build         # Compile for production
 npm run preview       # Preview production build locally
 npm run test          # Run Vitest unit tests
+npm run lint          # Run ESLint
+npm run format        # Format code with Prettier
+```
 
+### 📹 Demo Walkthrough
+
+*Watch a live demonstration of the application's key features and deployment process.*
 
 https://github.com/user-attachments/assets/57f846dd-625c-4998-b90d-fbbc7aa5405a
 
-
-```
+---
 
 ### B. The Backend (Service API)
 
@@ -86,8 +104,9 @@ A Node.js REST API that serves data regarding deployment methods.
 
 ```bash
 # Start the server (Defaults to Port 3000)
+cd backend
+npm install
 npm start
-
 ```
 
 **Endpoints:**
@@ -114,11 +133,41 @@ npm start
       "complexity": "Medium",
       "cost": "Low",
       "bestFor": "High-traffic Static Sites"
+    },
+    {
+      "method": "Traditional VPS",
+      "complexity": "High",
+      "cost": "$$",
+      "bestFor": "Custom Infrastructure Requirements"
     }
   ]
 }
-
 ```
+
+---
+
+## 🔐 Environment Configuration
+
+### Frontend (.env)
+
+Create a `.env` file in the root directory:
+
+```bash
+VITE_API_BASE_URL=http://localhost:3000
+VITE_APP_TITLE=Frontend Project Development
+```
+
+### Backend (.env)
+
+Create a `.env` file in the `backend/` directory:
+
+```bash
+PORT=3000
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:5173
+```
+
+**Note:** Never commit `.env` files. They are listed in `.gitignore`.
 
 ---
 
@@ -130,11 +179,19 @@ This project is configured to deploy automatically to **GitHub Pages**.
 
 Located in `.github/workflows/deploy.yml`.
 
-1. **Build:** runs `npm run build` to generate the `dist` folder.
-2. **Test:** runs `npm test` to ensure code integrity.
-3. **Deploy:** Syncs the `dist` folder to the `gh-pages` environment.
+1. **Build:** Runs `npm run build` to generate the `dist` folder.
+2. **Test:** Runs `npm test` to ensure code integrity.
+3. **Deploy:** Syncs the `dist` folder to the `gh-pages` branch.
 
-*Note: To replicate this, ensure "GitHub Actions" is selected as the source in your repository's Pages settings.*
+### How to Deploy Your Own Instance
+
+1. **Fork this repository**
+2. **Enable GitHub Pages:**
+   - Go to **Settings** → **Pages**
+   - Source: Select **GitHub Actions**
+3. **Configure base path** (if needed):
+   - Update `base` in `vite.config.ts` to match your repo name
+4. **Push to main branch** - Deployment happens automatically!
 
 ---
 
@@ -144,25 +201,119 @@ Located in `.github/workflows/deploy.yml`.
 frontproject-development-serviceApi/
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml              # Continuous Integration (Tests)
+│       ├── ci.yml              # Continuous Integration (Tests & Linting)
 │       └── deploy.yml          # Continuous Deployment (GH Pages)
 ├── src/                        # React Source Code
+│   ├── components/             # React Components
+│   ├── locales/                # i18n Translation Files
+│   ├── styles/                 # CSS Modules
+│   └── App.tsx                 # Main Application Entry
 ├── public/                     # Static Assets
-├── Dockerfile                  # Containerization config
-├── package.json                # Dependencies & Scripts
-├── vite.config.ts              # Bundler Configuration
-└── README.md                   # This documentation
-
+├── backend/                    # Node.js API
+│   ├── server.js               # Express Server
+│   └── package.json            # Backend Dependencies
+├── Dockerfile                  # Containerization Config
+├── package.json                # Frontend Dependencies & Scripts
+├── vite.config.ts              # Vite Bundler Configuration
+├── tsconfig.json               # TypeScript Configuration
+├── .eslintrc.cjs               # ESLint Rules
+├── .prettierrc                 # Prettier Configuration
+├── LICENSE                     # MIT License
+├── CONTRIBUTING.md             # Contribution Guidelines
+└── README.md                   # This Documentation
 ```
+
+---
+
+## 🔧 Troubleshooting
+
+### Build Fails on GitHub Actions
+- **Solution:** Check Node.js version in workflow matches your local environment (v18+).
+- Verify all dependencies are listed in `package.json`.
+
+### 404 Error on GitHub Pages
+- **Solution:** Ensure `base` in `vite.config.ts` matches your repository name:
+  ```ts
+  export default defineConfig({
+    base: '/frontproject-development-serviceApi/',
+  })
+  ```
+
+### API Connection Errors
+- **Solution:** Verify `VITE_API_BASE_URL` in `.env` points to the correct backend.
+- Check CORS configuration in `backend/server.js`.
+
+### Hot Module Replacement (HMR) Not Working
+- **Solution:** Clear Vite cache: `rm -rf node_modules/.vite`
+- Restart dev server: `npm run dev`
+
+### TypeScript Errors
+- **Solution:** Ensure `tsconfig.json` is properly configured.
+- Run `npm install @types/node @types/react --save-dev`.
+
+---
+
+## 🧪 Testing
+
+### Run Unit Tests
+
+```bash
+npm run test              # Run all tests
+npm run test:coverage     # Generate coverage report
+```
+
+### Run E2E Tests (if configured)
+
+```bash
+npm run test:e2e
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+### Quick Start for Contributors
+
+1. **Fork the repository**
+2. **Create a feature branch:**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes:**
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+4. **Push to the branch:**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](https://www.google.com/search?q=LICENSE).
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-### Next Step
+## 📧 Contact & Support
 
-Would you like me to generate the specific **YAML content** for the `.github/workflows/ci.yml` or `deploy.yml` files mentioned in the structure?
+- **GitHub:** [@hyukiody](https://github.com/hyukiody)
+- **Issues:** [Report a bug or request a feature](https://github.com/hyukiody/frontproject-development-serviceApi/issues)
+- **Discussions:** [Join the conversation](https://github.com/hyukiody/frontproject-development-serviceApi/discussions)
+
+---
+
+## 🌟 Acknowledgments
+
+- React Team for the amazing framework
+- Vite for blazing-fast build tooling
+- GitHub Actions for seamless CI/CD
+- All contributors who have helped improve this project
+
+---
+
+**Made with 🧡 by [hyukiody](https://github.com/hyukiody)**

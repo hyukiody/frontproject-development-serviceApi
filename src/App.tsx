@@ -17,36 +17,74 @@ export default function App() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                background: '#FFFFFF',
-                color: '#ff7a00',
-                padding: '1rem 2rem',
-                borderRadius: '16px',
-                border: '4px solid #ff7a00',
-                boxShadow: '0 10px 30px rgba(255, 122, 0, 0.6), 0 0 60px rgba(255, 122, 0, 0.4)',
-                transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)',
+                color: '#00FFFF',
+                padding: '1.2rem 2.5rem',
+                borderRadius: '20px',
+                border: '3px solid #00FFFF',
+                boxShadow: `
+                  0 0 20px rgba(0, 255, 255, 0.8),
+                  0 0 40px rgba(0, 255, 255, 0.6),
+                  0 0 60px rgba(0, 255, 255, 0.4),
+                  inset 0 0 20px rgba(0, 255, 255, 0.2)
+                `,
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                 fontWeight: '900',
-                fontSize: '1.4rem',
+                fontSize: '1.5rem',
                 textTransform: 'uppercase',
-                letterSpacing: '2px',
+                letterSpacing: '3px',
                 position: 'relative',
                 overflow: 'visible',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                textShadow: '0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px) scale(1.1) rotate(-2deg)'
-                e.currentTarget.style.background = '#ff7a00'
-                e.currentTarget.style.color = '#FFFFFF'
-                e.currentTarget.style.boxShadow = '0 20px 50px rgba(255, 122, 0, 0.8), 0 0 100px rgba(255, 122, 0, 0.6)'
+                e.currentTarget.style.transform = 'translateY(-12px) scale(1.15) rotate(-3deg)'
+                e.currentTarget.style.background = 'linear-gradient(135deg, #00FFFF 0%, #00BFFF 100%)'
+                e.currentTarget.style.color = '#000000'
+                e.currentTarget.style.border = '3px solid #000000'
+                e.currentTarget.style.boxShadow = `
+                  0 0 40px rgba(0, 255, 255, 1),
+                  0 0 80px rgba(0, 255, 255, 0.8),
+                  0 0 120px rgba(0, 255, 255, 0.6),
+                  0 20px 60px rgba(0, 0, 0, 0.8),
+                  inset 0 0 40px rgba(255, 255, 255, 0.3)
+                `
+                e.currentTarget.style.textShadow = '0 0 20px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.5)'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0) scale(1) rotate(0deg)'
-                e.currentTarget.style.background = '#FFFFFF'
-                e.currentTarget.style.color = '#ff7a00'
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 122, 0, 0.6), 0 0 60px rgba(255, 122, 0, 0.4)'
+                e.currentTarget.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)'
+                e.currentTarget.style.color = '#00FFFF'
+                e.currentTarget.style.border = '3px solid #00FFFF'
+                e.currentTarget.style.boxShadow = `
+                  0 0 20px rgba(0, 255, 255, 0.8),
+                  0 0 40px rgba(0, 255, 255, 0.6),
+                  0 0 60px rgba(0, 255, 255, 0.4),
+                  inset 0 0 20px rgba(0, 255, 255, 0.2)
+                `
+                e.currentTarget.style.textShadow = '0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5)'
               }}
             >
-              <span style={{ fontSize: '3rem', lineHeight: '1', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}>🐱</span>
-              <span style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.2)' }}>{t('nav.home')}</span>
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <img 
+                  src="/frontproject-development-serviceApi/cat-logo.svg" 
+                  alt="Epic Cat" 
+                  style={{ 
+                    width: '60px', 
+                    height: '60px',
+                    filter: 'drop-shadow(0 0 10px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(0, 255, 255, 0.6))',
+                    display: 'block',
+                    animation: 'catPulse 2s ease-in-out infinite'
+                  }} 
+                />
+              </div>
+              <span>{t('nav.home')}</span>
             </Link>
             <a className="button" href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">{t('nav.docs')}</a>
             <button className="button" onClick={() => i18n.changeLanguage('en')} aria-label="Switch to English">{t('nav.en')}</button>
@@ -58,6 +96,19 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Portfolio />} />
       </Routes>
+      
+      <style>{`
+        @keyframes catPulse {
+          0%, 100% { 
+            transform: scale(1);
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+          }
+          50% { 
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.8));
+          }
+        }
+      `}</style>
     </div>
   )
 }

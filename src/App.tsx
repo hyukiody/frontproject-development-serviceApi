@@ -1,110 +1,63 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
-import './App.css';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import catLogo from './assets/cat-logo.png';
+import { Routes, Route, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Portfolio from './pages/Portfolio'
 
-function AppContent() {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
-
+export default function App() {
+  const { t, i18n } = useTranslation()
   return (
-    <div className="App">
-      <header className="App-header">
-        <nav className="nav-container">
-          <Link 
-            to="/" 
-            className="logo-link"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
-              padding: '8px',
-              borderRadius: '50px',
-              boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)',
-              transition: 'all 0.3s ease',
-              textDecoration: 'none',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.6)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
-            }}
-          >
-            <div
+    <div>
+      <nav aria-label="Primary">
+        <a className="skip-link" href="#main">Skip to main content</a>
+        <div className="app" style={{ padding: 0 }}>
+          <div className="card" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Link 
+              className="button home-button" 
+              to="/" 
               style={{
-                background: 'white',
-                borderRadius: '50%',
-                padding: '16px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                border: '3px solid #333',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.1)',
+                gap: '1rem',
+                background: '#FFFFFF',
+                color: '#ff7a00',
+                padding: '1rem 2rem',
+                borderRadius: '16px',
+                border: '4px solid #ff7a00',
+                boxShadow: '0 10px 30px rgba(255, 122, 0, 0.6), 0 0 60px rgba(255, 122, 0, 0.4)',
+                transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                fontWeight: '900',
+                fontSize: '1.4rem',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                position: 'relative',
+                overflow: 'visible',
+                textDecoration: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px) scale(1.1) rotate(-2deg)'
+                e.currentTarget.style.background = '#ff7a00'
+                e.currentTarget.style.color = '#FFFFFF'
+                e.currentTarget.style.boxShadow = '0 20px 50px rgba(255, 122, 0, 0.8), 0 0 100px rgba(255, 122, 0, 0.6)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) scale(1) rotate(0deg)'
+                e.currentTarget.style.background = '#FFFFFF'
+                e.currentTarget.style.color = '#ff7a00'
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 122, 0, 0.6), 0 0 60px rgba(255, 122, 0, 0.4)'
               }}
             >
-              <img 
-                src={catLogo} 
-                alt="Cat Logo" 
-                style={{
-                  height: '32px',
-                  width: '32px',
-                  display: 'block',
-                }}
-              />
-            </div>
-            <span 
-              style={{
-                marginLeft: '12px',
-                marginRight: '8px',
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: '18px',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              Home
-            </span>
-          </Link>
-          
-          <div className="nav-links">
-            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
-              About
+              <span style={{ fontSize: '3rem', lineHeight: '1', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}>🐱</span>
+              <span style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.2)' }}>{t('nav.home')}</span>
             </Link>
-            <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
-              Contact
-            </Link>
+            <a className="button" href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">{t('nav.docs')}</a>
+            <button className="button" onClick={() => i18n.changeLanguage('en')} aria-label="Switch to English">{t('nav.en')}</button>
+            <button className="button" onClick={() => i18n.changeLanguage('ja')} aria-label="日本語に切り替え">{t('nav.ja')}</button>
           </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
 
-      <main className="App-main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-
-      <footer className="App-footer">
-        <p>&copy; 2024 My React App. All rights reserved.</p>
-      </footer>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+      </Routes>
     </div>
-  );
+  )
 }
-
-function App() {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
-  );
-}
-
-export default App;

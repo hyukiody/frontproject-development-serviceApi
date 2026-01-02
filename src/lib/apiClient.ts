@@ -6,34 +6,36 @@ export interface ApiResponse<T> {
   status: number;
 }
 
-export class ApiClient {
-  private baseURL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+const identityBase = import.meta.env.VITE_IDENTITY_API_URL || 'http://localhost:8081';
+const streamBase = import.meta.env.VITE_STREAM_API_URL || 'http://localhost:8080';
+const imageBase = import.meta.env.VITE_IMAGE_API_URL || 'http://localhost:8082';
 
+export class ApiClient {
   private async request<T>(
-    method: string,
+    baseUrl: string,
     path: string,
-    body?: unknown
+    method: string,
+    body?: unknown,
+    headers: HeadersInit = { 'Content-Type': 'application/json' }
   ): Promise<ApiResponse<T>> {
     try {
-      const headers: HeadersInit = {
-        'Content-Type': 'application/json',
-      };
+      const requestHeaders: HeadersInit = { ...headers };
 
       const token = StorageService.getToken();
       if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+        requestHeaders['Authorization'] = `Bearer ${token}`;
       }
 
       const config: RequestInit = {
         method,
-        headers,
+        headers: requestHeaders,
       };
 
       if (body) {
         config.body = JSON.stringify(body);
       }
 
-      const response = await fetch(`${this.baseURL}${path}`, config);
+      const response = await fetch(`${baseUrl}${path}`, config);
 
       if (response.status === 401) {
         StorageService.clearUser();
@@ -55,11 +57,11 @@ export class ApiClient {
   }
 
   public async login(email: string, password: string) {
-    return this.request('/api/auth/login', 'POST', { email, password });
+    return this.request(identityBase, '/api/auth/login', 'POST', { email, password });
   }
 
   public async register(email: string, password: string) {
-    return this.request('/api/auth/register', 'POST', { email, password });
+    return this.request(identityBase, '/api/auth/register', 'POST', { email, password });
   }
 
   public async uploadImages(files: File[]) {
@@ -72,7 +74,7 @@ export class ApiClient {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`${this.baseURL}/api/images/batch-process`, {
+    const response = await fetch(`${imageBase}/api/images/batch-process`, {
       method: 'POST',
       headers,
       body: formData,
@@ -85,11 +87,11 @@ export class ApiClient {
   }
 
   public async encryptGCM(plaintext: string, aesKey: string) {
-    return this.request('/api/stream/encrypt-gcm', 'POST', { plaintext, aesKey });
+    return this.request(streamBase, '/api/stream/encrypt-gcm', 'POST', { plaintext, aesKey });
   }
 
   public async decryptGCM(ciphertext: string, iv: string, aesKey: string) {
-    return this.request('/api/stream/decrypt-gcm', 'POST', { ciphertext, iv, aesKey });
+    return this.request(streamBase, '/api/stream/decrypt-gcm', 'POST', { ciphertext, iv, aesKey });
   }
 }
 

@@ -1,52 +1,69 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Portfolio from './pages/Portfolio'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import VideoPlayer from './pages/VideoPlayer'
 
 export default function App() {
   const { t, i18n } = useTranslation()
+  
+  // Verifica se está na rota do EyeO Platform
+  const isEyeORoute = window.location.pathname.startsWith('/login') || 
+                      window.location.pathname.startsWith('/dashboard') ||
+                      window.location.pathname.startsWith('/watch')
+  
   return (
     <div>
-      <nav aria-label="Primary">
-        <a className="skip-link" href="#main">Skip to main content</a>
-        <div className="app" style={{ padding: 0 }}>
-          <div className="card" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <Link 
-              className="button" 
-              to="/" 
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                textDecoration: 'none'
-              }}
-            >
-              <img 
-                src="/frontproject-development-serviceApi/cat-logo.svg" 
-                alt="Cat logo" 
-                style={{ 
-                  width: '32px', 
-                  height: '32px',
-                  display: 'block'
-                }} 
-              />
-              {t('nav.home')}
-            </Link>
-            <a className="button" href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">{t('nav.docs')}</a>
-            <button className="button" onClick={() => i18n.changeLanguage('en')} aria-label="Switch to English">{t('nav.en')}</button>
-            <button className="button" onClick={() => i18n.changeLanguage('ja')} aria-label="日本語に切り替え">{t('nav.ja')}</button>
-          </div>
-        </div>
-      </nav>
+      {!isEyeORoute && (
+        <>
+          <nav aria-label="Primary">
+            <a className="skip-link" href="#main">Skip to main content</a>
+            <div className="app" style={{ padding: 0 }}>
+              <div className="card" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <Link 
+                  className="button" 
+                  to="/" 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    textDecoration: 'none'
+                  }}
+                >
+                  <img 
+                    src="/frontproject-development-serviceApi/cat-logo.svg" 
+                    alt="Cat logo" 
+                    style={{ 
+                      width: '32px', 
+                      height: '32px',
+                      display: 'block'
+                    }} 
+                  />
+                  {t('nav.home')}
+                </Link>
+                <Link className="button" to="/login">EyeO Platform</Link>
+                <a className="button" href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">{t('nav.docs')}</a>
+                <button className="button" onClick={() => i18n.changeLanguage('en')} aria-label="Switch to English">{t('nav.en')}</button>
+                <button className="button" onClick={() => i18n.changeLanguage('ja')} aria-label="日本語に切り替え">{t('nav.ja')}</button>
+              </div>
+            </div>
+          </nav>
 
-      {/* Cyberpunk Neon Divider Section */}
-      <div className="neon-divider-section">
-        <div className="neon-line"></div>
-        <div className="neon-text">PORTFOLIO INTERFACE</div>
-        <div className="neon-line"></div>
-      </div>
+          {/* Cyberpunk Neon Divider Section */}
+          <div className="neon-divider-section">
+            <div className="neon-line"></div>
+            <div className="neon-text">PORTFOLIO INTERFACE</div>
+            <div className="neon-line"></div>
+          </div>
+        </>
+      )}
 
       <Routes>
         <Route path="/" element={<Portfolio />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/watch/:storageKey" element={<VideoPlayer />} />
       </Routes>
       
       <style>{`

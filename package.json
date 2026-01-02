@@ -28,8 +28,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "chart.js": "^4.4.1",
     "i18next": "^25.7.3",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^16.5.0",
     "react-router-dom": "^6.27.0"

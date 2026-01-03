@@ -1,0 +1,135 @@
+@keyframes rainbow-border {
+  0% { border-color: #ff0080; box-shadow: 0 0 20px #ff0080, 0 0 40px #ff0080, inset 0 0 20px rgba(255, 0, 128, 0.3); }
+  16% { border-color: #ff8000; box-shadow: 0 0 20px #ff8000, 0 0 40px #ff8000, inset 0 0 20px rgba(255, 128, 0, 0.3); }
+  33% { border-color: #ffff00; box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00, inset 0 0 20px rgba(255, 255, 0, 0.3); }
+  50% { border-color: #00ff80; box-shadow: 0 0 20px #00ff80, 0 0 40px #00ff80, inset 0 0 20px rgba(0, 255, 128, 0.3); }
+  66% { border-color: #0080ff; box-shadow: 0 0 20px #0080ff, 0 0 40px #0080ff, inset 0 0 20px rgba(0, 128, 255, 0.3); }
+  83% { border-color: #8000ff; box-shadow: 0 0 20px #8000ff, 0 0 40px #8000ff, inset 0 0 20px rgba(128, 0, 255, 0.3); }
+  100% { border-color: #ff0080; box-shadow: 0 0 20px #ff0080, 0 0 40px #ff0080, inset 0 0 20px rgba(255, 0, 128, 0.3); }
+}
+
+@keyframes title-glow {
+  0%, 100% { 
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+  }
+  50% { 
+    text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #00ffff, 0 0 80px #00ffff, 0 0 100px #00ffff;
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #ff00ff;
+  }
+  50% {
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff, 0 0 30px #00ffff;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient(ellipse at center, #1a0033 0%, #0d001a 50%, #000000 100%);
+  background-attachment: fixed;
+  color: #00ffff;
+  font-size: 20px;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+}
+
+#root {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 40%);
+}
+
+h1, h2, h3 {
+  font-size: 3em;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: title-glow 2s ease-in-out infinite;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 1.3em;
+  text-shadow: 0 0 8px #00ffff, 0 0 12px #00ffff;
+  color: #00ffff;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 15px 35px;
+  border: 3px solid #ff00ff;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%);
+  color: #00ffff;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: rainbow-border 4s linear infinite, neon-pulse 1.5s ease-in-out infinite;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+}
+
+button:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 0 30px #00ffff, 0 0 50px #00ffff, 0 0 70px #ff00ff;
+  background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+}
+
+input, textarea, select {
+  font-size: 1.2em;
+  padding: 12px 20px;
+  border: 2px solid #00ffff;
+  border-radius: 8px;
+  background: rgba(10, 0, 30, 0.8);
+  color: #00ffff;
+  animation: rainbow-border 4s linear infinite;
+  box-shadow: 0 0 10px #00ffff, inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, inset 0 0 15px rgba(255, 0, 255, 0.3);
+  border-color: #ff00ff;
+}
+
+div {
+  text-shadow: 0 0 5px #00ffff, 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+a {
+  color: #ff00ff;
+  text-decoration: none;
+  text-shadow: 0 0 10px #ff00ff;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #ff00ff;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}

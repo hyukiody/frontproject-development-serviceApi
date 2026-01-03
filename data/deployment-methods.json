@@ -1,0 +1,28 @@
+{
+  "deploymentMethods": [
+    {
+      "method": "PaaS (Vercel/Netlify)",
+      "complexity": "Low",
+      "cost": "Free - $$$",
+      "bestFor": "Next.js, Standard SPAs, Rapid Prototyping"
+    },
+    {
+      "method": "Object Storage (S3)",
+      "complexity": "Medium",
+      "cost": "Low",
+      "bestFor": "High-traffic Static Sites, Enterprise"
+    },
+    {
+      "method": "Docker / K8s",
+      "complexity": "High",
+      "cost": "High",
+      "bestFor": "Complex Microservices, Strict Security"
+    },
+    {
+      "method": "VPS (Nginx)",
+      "complexity": "Medium",
+      "cost": "Low",
+      "bestFor": "Traditional setups, self-hosting"
+    }
+  ]
+}
